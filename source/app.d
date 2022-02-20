@@ -3,7 +3,7 @@ module ardilla.mainapp;
 private {
 	import std.conv : to;
 	import std.file : exists, isDir;
-	import std.string : indexOf;
+	import std.string : indexOf, startsWith;
 	
 	import ardilla.configuration;
 	import ardilla.gopher : GOPHER_REQUEST_TERMINATOR;
@@ -92,7 +92,7 @@ class GopherServer : GenericSimpleServer!(GOPHER_BUFFER_SIZE, GOPHER_NUMBER_OF_C
 				}
 				else
 				{
-					if (entry.exists)
+					if (entry.exists && entry.startsWith(GOPHER_FOLDER))
 					{
 						if (entry.isDir)
 						{
@@ -110,6 +110,10 @@ class GopherServer : GenericSimpleServer!(GOPHER_BUFFER_SIZE, GOPHER_NUMBER_OF_C
 							
 							response = GopherResponse.fromFile(entry);
 						}
+					}
+					else
+					{
+						response = GopherResponse.createError("Wrong file or directory");
 					}
 				}
 			}
