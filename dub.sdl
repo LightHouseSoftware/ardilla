@@ -1,0 +1,9 @@
+name "ardilla"
+description "Simple gopher protocol server, written in D"
+authors "Oleg Bakharev"
+copyright "Copyright © 2022, Oleg Bakharev"
+license "ESL 1.0"
+buildType "release-small" {
+	buildOptions "releaseMode" "optimize" "noBoundsCheck"
+	postBuildCommands "strip -s ardilla"
+}
