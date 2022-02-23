@@ -139,7 +139,10 @@ void main()
 			info("[Server] Server configured.");
 		}
 		
-		setup4(GOPHER_IP, 70);
+		static if (IP_V6_MODE)
+			setup6(GOPHER_IP, 70);
+		else
+			setup4(GOPHER_IP, 70);
 		
 		debug {
 			info("[Server] Server started.");

@@ -4,6 +4,8 @@ module ardilla.configuration;
 	Server configuration
 */
 
+// turn on using IPv6
+enum bool IP_V6_MODE 					= true;
 // visible domain in gopher data
 enum string GOPHER_DOMAIN               = `<your domain>`;
 // real gopher server ip
